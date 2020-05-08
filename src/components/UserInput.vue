@@ -49,6 +49,7 @@ export default {
 
             this.currentInputText = selection.item.name;
             this.currentInputPriority = selection.item.priority;
+            this.submit();
         },
         submit() {
             this.$store.dispatch('addToStack', {
