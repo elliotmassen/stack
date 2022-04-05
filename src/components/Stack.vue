@@ -8,6 +8,7 @@
 import StackItem from './StackItem'
 
 export default {
+    // eslint-disable-next-line
     name: 'Stack',
     components: {
         StackItem
