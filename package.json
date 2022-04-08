@@ -1,6 +1,6 @@
 {
   "name": "stack",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -9,16 +9,15 @@
   },
   "dependencies": {
     "core-js": "^3.21.1",
+    "pinia": "^2.0.13",
     "pretty-ms": "^7.0.0",
-    "vue": "^2.6.11",
-    "vue-autosuggest": "^2.2.0",
-    "vuex": "^3.6.2"
+    "vue": "^3.2.31"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
     "@vue/cli-plugin-babel": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.4",
     "@vue/cli-service": "^5.0.4",
-    "@babel/eslint-parser": "^7.17.0",
     "eslint": "^8.12.0",
     "eslint-plugin-vue": "^8.5.0",
     "vue-template-compiler": "^2.6.11"

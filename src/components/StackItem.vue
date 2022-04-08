@@ -8,14 +8,23 @@
 </template>
 
 <script>
+import {useStore} from '../store'
+import { defineComponent } from 'vue';
 import prettyMilliseconds from 'pretty-ms';
 
-export default {
+export default defineComponent({
     name: 'StackItem',
     props: [
         'item'
     ],
-    data: function() {
+    setup() {
+        const store = useStore()
+
+        return {
+            store
+        }
+    },
+    data() {
       return {
           currentTime: Date.now(),
       };  
@@ -36,10 +45,10 @@ export default {
     },
     methods: {
         remove() {
-            this.$store.commit('REMOVE_FROM_STACK', this.item);
+            this.store.REMOVE_FROM_STACK(this.item);
         }
     }
-}
+})
 </script>
 
 <style>
