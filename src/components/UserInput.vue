@@ -46,10 +46,11 @@ export default defineComponent({
     form {
         display: flex;
         justify-content: flex-end;
+        border: 1px solid #888;
     }
 
     .input form > input, .input form > button {
-        width: 33%;
+        width: 100%;
         margin:1px;
         padding: 0.75rem 1rem;
         max-height: 2.5rem;

@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <Fragment>
     <UserInput />
     <Stack />
-  </div>
+  </Fragment>
 </template>
 
 <script>
