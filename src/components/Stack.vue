@@ -1,13 +1,13 @@
 <template>
   <div class='stack'>
-      <StackItem v-for='stackItem in stack' :key='stackItem.id' :item='stackItem' />
+    <StackItem v-for='stackItem in stack' :key='stackItem.id' :item='stackItem' />
   </div>
 </template>
 
 <script>
 import {defineComponent} from 'vue';
 import { useStore } from '../store';
-import StackItem from './StackItem'
+import StackItem from './StackItem.vue'
 
 export default defineComponent({
     // eslint-disable-next-line

@@ -1,14 +1,14 @@
 <template>
-  <Fragment>
+  <div>
     <UserInput />
     <Stack />
-  </Fragment>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import UserInput from './components/UserInput'
-import Stack from './components/Stack'
+import UserInput from './components/UserInput.vue'
+import Stack from './components/Stack.vue'
 
 export default defineComponent({
   name: 'App',
