@@ -1,36 +1,39 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { defineStore } from 'pinia'
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-    state: {
+export const useStore = defineStore('index', {
+    state: () => ({
       participants: [],
       stack: [],
-    },
-    mutations: {
-      ADD_PARTICIPANT(state, newParticipant) {
-        state.participants.push(newParticipant);
+    }),
+    getters: {
+      participantNames(state) {
+        return state.participants.map(participant => participant.name);
       },
-      ADD_STACK_ITEM(state, newStackItem, index = null) {
-        if (index === null) {
-          state.stack.push(newStackItem);
-        } else {
-          state.participants.splice(index, 0, newStackItem);
-        }
+      participantNamesLowerCase(state) {
+        return state.participants.map(participant => participant.name.toLowerCase());
       },
-      REMOVE_FROM_STACK(state, stackItem) {
-        let index = state.stack.indexOf(stackItem);
-        state.stack.splice(index, 1);
-      }
     },
     actions: {
-      addToStack({ state, getters, commit }, newStackItem) {
+      ADD_PARTICIPANT(newParticipant) {
+        this.participants.push(newParticipant);
+      },
+      ADD_STACK_ITEM(newStackItem, index = null) {
+        if (index === null) {
+          this.stack.push(newStackItem);
+        } else {
+          this.participants.splice(index, 0, newStackItem);
+        }
+      },
+      REMOVE_FROM_STACK(stackItem) {
+        let index = this.stack.indexOf(stackItem);
+        this.stack.splice(index, 1);
+      },
+      addToStack(newStackItem) {
         let participant;
-  
-        if (getters.participantNamesLowerCase.includes(newStackItem.name.toLowerCase())) {
-          let index = getters.participantNamesLowerCase.indexOf(newStackItem.name.toLowerCase());
-          participant = state.participants[index];
+
+        if (this.participantNamesLowerCase.includes(newStackItem.name.toLowerCase())) {
+          let index = this.participantNamesLowerCase.indexOf(newStackItem.name.toLowerCase());
+          participant = this.participants[index];
           participant.priority = newStackItem.priority;
           participant.count++;
         } else {
@@ -39,21 +42,13 @@ export default new Vuex.Store({
             priority: newStackItem.priority,
             count: 1,
           };
-          commit('ADD_PARTICIPANT', participant);
+          this.ADD_PARTICIPANT(participant);
         }
-  
-        commit('ADD_STACK_ITEM', {
+
+        this.ADD_STACK_ITEM({
           timer: newStackItem.timer,
           participant,
         })
       }
-    },
-    getters: {
-        participantNames(state) {
-          return state.participants.map(participant => participant.name);
-        },
-        participantNamesLowerCase(state) {
-          return state.participants.map(participant => participant.name.toLowerCase());
-        },
-    },
-  });
+    }
+});
